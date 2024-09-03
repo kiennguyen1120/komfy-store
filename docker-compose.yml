@@ -1,0 +1,73 @@
+version: "3.7"
+
+services:
+  mysql8-container:
+    container_name: mysql8-container
+    image: mysql:8.2.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: StoreApp
+    ports:
+      - 3307:3306
+    networks:
+      - komfy-network
+
+  phpmyadmin8-container:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin8-container
+    restart: always
+    depends_on:
+      - mysql8-container
+    ports:
+      - "8100:80"
+    environment:
+      PMA_HOST: mysql8-container
+    networks:
+      - komfy-network
+
+  komfy-backend-container:
+    container_name: komfy-backend-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8099:8088"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql8-container:3306/StoreApp
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - mysql8-container
+    networks:
+      - komfy-network
+
+  komfy-frotend-container:
+    container_name: komfy-frotend-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    networks:
+      - komfy-network
+
+networks:
+  komfy-network:
+    name: komfy-network
+    driver: bridge
+#docker-compose -f ./docker-compose.yml down
+
+#docker-compose -f ./docker-compose.yml rm -s -f mysql8-container
+#docker-compose -f ./docker-compose.yml up -d mysql8-container
+
+#docker-compose -f ./docker-compose.yml rm -s -f phpmyadmin8-container
+#docker-compose -f ./docker-compose.yml up -d phpmyadmin8-container
+
+#docker-compose -f ./docker-compose.yml rm -s -f komfy-backend-container
+#docker-compose -f ./docker-compose.yml up -d komfy-backend-container
+#docker logs komfy-backend-container
+
+#docker-compose -f ./docker-compose.yml rm -s -f komfy-frontend-container
+#docker-compose -f ./docker-compose.yml up -d komfy-frontend-container
+#docker logs komfy-frontend-container
+
