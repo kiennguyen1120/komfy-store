@@ -28,11 +28,9 @@ services:
 
   komfy-backend-container:
     container_name: komfy-backend-container
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: registry.gitlab.com/komfy/komfy-backend:v0.0.1
     ports:
-      - "8099:8088"
+      - "8099:8099"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql8-container:3306/StoreApp
       MYSQL_ROOT_PASSWORD: root
@@ -41,11 +39,11 @@ services:
     networks:
       - komfy-network
 
-  komfy-frotend-container:
-    container_name: komfy-frotend-container
-    build:
-      context: .
-      dockerfile: Dockerfile
+  komfy-frontend-container:
+    container_name: komfy-frontend-container
+    image: registry.gitlab.com/komfy/komfy-frontend:v0.0.1
+    environment:
+      - API_BASE_URL=http://localhost:8099/api/v1
     ports:
       - "5173:80"
     networks:
