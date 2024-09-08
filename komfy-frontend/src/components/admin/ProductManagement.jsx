@@ -105,10 +105,10 @@ const ProductManagement = () => {
                     <td>{id}</td>
                     <td>
                       <img
-                        src={`http://localhost:8099/api/v1/products/images/${thumbnail}`}
+                        src={`https://komfy-api.teeai.net/api/v1/products/images/${thumbnail}`}
                         onError={(e) => {
                           e.target.src =
-                            "http://localhost:8099/api/v1/products/images/placeholder.jpg";
+                            "https://komfy-api.teeai.net/api/v1/products/images/placeholder.jpg";
                         }}
                         alt={name}
                         className="w-16 h-16 object-cover rounded-lg"

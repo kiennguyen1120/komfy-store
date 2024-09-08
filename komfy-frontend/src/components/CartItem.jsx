@@ -19,7 +19,7 @@ const CartItem = ({ cartItem }) => {
       {/* IMAGE */}
       <Link to={`/products/${productID}`}>
         <img
-          src={`http://localhost:8099/api/v1/products/images/${thumbnail}`}
+          src={`https://komfy-api.teeai.net/api/v1/products/images/${thumbnail}`}
           alt={name}
           className="h-24 w-24 rounded-lg sm:h-32 sm:w-32 object-cover"
         />

@@ -96,7 +96,7 @@ const ViewProduct = () => {
           {/* IMAGE */}
           <div className="relative">
             <img
-              src={`http://localhost:8099/api/v1/products/images/${thumbnail}`}
+              src={`https://komfy-api.teeai.net/api/v1/products/images/${thumbnail}`}
               alt="product thumbnail"
               className="h-96 max-w-full rounded-lg"
             />
@@ -105,7 +105,7 @@ const ViewProduct = () => {
               {productImages.map((image, index) => (
                 <img
                   key={index}
-                  src={`http://localhost:8099/api/v1/products/images/${image.image_url}`}
+                  src={`https://komfy-api.teeai.net/api/v1/products/images/${image.image_url}`}
                   alt="product image"
                   onClick={() => handleThumbnailClick(image.image_url)}
                   className={`h-auto max-w-full rounded-lg cursor-pointer ${

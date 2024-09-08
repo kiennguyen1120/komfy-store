@@ -16,11 +16,11 @@ const ProductsGrid = () => {
           >
             <figure className="px-4 pt-4">
               <img
-                src={`http://localhost:8099/api/v1/products/images/${thumbnail}`}
+                src={`https://komfy-api.teeai.net/api/v1/products/images/${thumbnail}`}
                 alt={name}
                 onError={(e) => {
                   e.target.src =
-                    "http://localhost:8099/api/v1/products/images/placeholder.jpg";
+                    "https://komfy-api.teeai.net/api/v1/products/images/placeholder.jpg";
                 }}
                 className="rounded-xl h-64 md:h-48 w-full object-cover"
               />

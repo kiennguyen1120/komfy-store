@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const productionUrl =
-  process.env.API_BASE_URL ?? "http://localhost:8099/api/v1";
+const productionUrl = "https://komfy-api.teeai.net/api/v1";
 
 export const customFetch = axios.create({
   baseURL: productionUrl,
